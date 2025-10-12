@@ -8,6 +8,7 @@ import Events from "./pages/Events";
 import EventDetails from "./pages/EventDetails";
 import About from "./pages/About";
 import Login from "./pages/Login";
+import AdminEvents from "./pages/AdminEvents";
 import NotFound from "./pages/NotFound";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
@@ -53,6 +54,16 @@ const App = () => (
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin/events"
+            element={
+              <>
+                <Navigation />
+                <AdminEvents />
+                <Footer />
+              </>
+            }
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
