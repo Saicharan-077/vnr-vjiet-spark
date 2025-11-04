@@ -17,6 +17,7 @@ export type Database = {
       events: {
         Row: {
           category: string
+          club: string
           contact_email: string
           contact_phone: string
           created_at: string
@@ -33,6 +34,7 @@ export type Database = {
         }
         Insert: {
           category: string
+          club?: string
           contact_email: string
           contact_phone: string
           created_at?: string
@@ -49,6 +51,7 @@ export type Database = {
         }
         Update: {
           category?: string
+          club?: string
           contact_email?: string
           contact_phone?: string
           created_at?: string
