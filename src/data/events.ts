@@ -7,6 +7,7 @@ export interface Event {
   image: string;
   description: string;
   organizer: string;
+  club: string;
   rules: string[];
   contact: {
     name: string;
@@ -24,7 +25,8 @@ export const events: Event[] = [
     venue: "C Block - Room 317",
     image: "/event-tech.jpg",
     description: "A 24-hour hackathon where innovation meets code. Build solutions for real-world problems.",
-    organizer: "Tech Club",
+    organizer: "CSE Department",
+    club: "ACM Student Chapter",
     rules: [
       "Teams of 2-4 members",
       "Bring your own laptop",
@@ -46,6 +48,7 @@ export const events: Event[] = [
     image: "/event-cultural.jpg",
     description: "Celebrate diversity through music, dance, and art. Showcase your talent!",
     organizer: "Cultural Committee",
+    club: "Livewire (Dance Club)",
     rules: [
       "Open to all students",
       "Register your performance in advance",
@@ -67,6 +70,7 @@ export const events: Event[] = [
     image: "/event-sports.jpg",
     description: "Compete in athletics, cricket, basketball, and more. Show your sporting spirit!",
     organizer: "Sports Committee",
+    club: "Sports & Athletics Club",
     rules: [
       "Valid college ID required",
       "Sportswear mandatory",
@@ -88,6 +92,7 @@ export const events: Event[] = [
     image: "/event-tech.jpg",
     description: "Learn the fundamentals of AI and Machine Learning from industry experts.",
     organizer: "CSE Department",
+    club: "IEEE Student Chapter",
     rules: [
       "Basic programming knowledge required",
       "Limited seats - register early",
@@ -109,6 +114,7 @@ export const events: Event[] = [
     image: "/event-cultural.jpg",
     description: "Rock the stage with your band! Original compositions encouraged.",
     organizer: "Music Club",
+    club: "Crescendo (Music Club)",
     rules: [
       "Bands of 3-6 members",
       "20 minutes performance time",
@@ -130,6 +136,7 @@ export const events: Event[] = [
     image: "/event-sports.jpg",
     description: "Run for charity! All proceeds go to local NGOs supporting education.",
     organizer: "NSS Unit",
+    club: "NSS & Social Welfare",
     rules: [
       "Registration fee: ₹200",
       "Age limit: 16+",

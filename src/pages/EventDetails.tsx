@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
-import { Calendar, MapPin, User, Mail, Phone, ArrowLeft, CheckCircle } from "lucide-react";
+import { Calendar, MapPin, User, Mail, Phone, ArrowLeft, CheckCircle, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { events } from "@/data/events";
+import CertificateGenerator from "@/components/CertificateGenerator";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -61,9 +62,15 @@ const EventDetails = () => {
             {event.category}
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
-          <div className="flex items-center text-muted-foreground mb-6">
-            <User className="h-4 w-4 mr-2" />
-            <span className="text-sm">Organized by {event.organizer}</span>
+          <div className="space-y-3 mb-6">
+            <div className="flex items-center text-muted-foreground">
+              <User className="h-4 w-4 mr-2" />
+              <span className="text-sm">Organized by {event.organizer}</span>
+            </div>
+            <div className="flex items-center">
+              <Award className="h-5 w-5 mr-2 text-accent" />
+              <span className="text-sm font-semibold text-accent">{event.club}</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -117,8 +124,9 @@ const EventDetails = () => {
             </Card>
           </div>
 
-          {/* Contact Information */}
-          <div>
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Contact Information */}
             <Card className="animate-fade-in-up sticky top-24" style={{ animationDelay: "0.2s" }}>
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold mb-4">Contact Information</h2>
@@ -152,6 +160,21 @@ const EventDetails = () => {
                     </div>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+
+            {/* Certificate Download */}
+            <Card className="animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold mb-4">Get Certificate</h2>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Download your certificate of participation for this event.
+                </p>
+                <CertificateGenerator
+                  eventTitle={event.title}
+                  eventDate={event.date}
+                  club={event.club}
+                />
               </CardContent>
             </Card>
           </div>

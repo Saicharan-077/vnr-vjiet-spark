@@ -115,54 +115,64 @@ const Login = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center py-12 px-4"
+      className="min-h-screen flex items-center justify-center py-12 px-4 relative overflow-hidden"
       style={{
         backgroundImage: `url(${heroCampus})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 gradient-tech opacity-90"></div>
+      {/* Animated background overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-primary/20"></div>
       
-      <Card className="w-full max-w-md relative z-10 shadow-lg hover-glow animate-scale-in backdrop-blur-sm bg-background/95 border-primary/20">
-        <CardHeader className="text-center space-y-4">
+      {/* Floating orbs */}
+      <div className="absolute top-20 left-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }}></div>
+      
+      <Card className="w-full max-w-md relative z-10 border-primary/30 shadow-2xl hover-glow animate-scale-in backdrop-blur-xl bg-card/80">
+        <CardHeader className="text-center space-y-6 pb-8">
           <div className="flex justify-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-tech animate-pulse">
-              <LogIn className="h-10 w-10 text-white" />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-xl opacity-60 animate-pulse"></div>
+              <div className="relative inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-primary border-2 border-primary/50 shadow-lg">
+                <LogIn className="h-12 w-12 text-white" />
+              </div>
             </div>
           </div>
-          <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            {isSignUp ? "Create Account" : "Welcome Back"}
-          </CardTitle>
-          <CardDescription className="text-base">
-            {isSignUp ? "Join the VNR VJIET Event Management System" : "Sign in to access the VNR VJIET Event Management System"}
-          </CardDescription>
+          <div className="space-y-2">
+            <CardTitle className="text-4xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-fade-in">
+              {isSignUp ? "Create Account" : "Welcome Back"}
+            </CardTitle>
+            <CardDescription className="text-base text-muted-foreground">
+              {isSignUp ? "Join VNR VJIET Event Management" : "Access your events dashboard"}
+            </CardDescription>
+          </div>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-5">
+        <CardContent className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email */}
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
+            <div className="space-y-3">
+              <Label htmlFor="email" className="text-sm font-semibold text-foreground">Email Address</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="your.email@vnrvjiet.in"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="transition-all duration-300 focus:shadow-glow border-primary/30 focus:border-primary"
+                className="h-12 transition-all duration-300 focus:shadow-glow border-primary/40 focus:border-primary bg-background/50 backdrop-blur-sm"
               />
             </div>
 
             {/* Password */}
-            <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium">Password</Label>
+            <div className="space-y-3">
+              <Label htmlFor="password" className="text-sm font-semibold text-foreground">Password</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="transition-all duration-300 focus:shadow-glow border-primary/30 focus:border-primary"
+                className="h-12 transition-all duration-300 focus:shadow-glow border-primary/40 focus:border-primary bg-background/50 backdrop-blur-sm"
               />
             </div>
 
@@ -170,28 +180,34 @@ const Login = () => {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full mt-6 bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary transition-all duration-300 shadow-glow text-lg font-semibold"
+              className="w-full h-12 mt-8 bg-gradient-to-r from-primary via-accent to-primary hover:shadow-glow transition-all duration-500 text-lg font-bold relative overflow-hidden group"
               size="lg"
             >
-              {loading ? "Please wait..." : (isSignUp ? "Create Account" : "Sign In")}
+              <span className="relative z-10">{loading ? "Please wait..." : (isSignUp ? "Create Account" : "Sign In")}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Button>
 
             {/* Toggle Sign Up/Sign In */}
-            <div className="text-center mt-4">
+            <div className="text-center pt-4">
               <button
                 type="button"
                 onClick={() => setIsSignUp(!isSignUp)}
-                className="text-sm text-primary hover:text-accent transition-colors"
+                className="text-sm font-medium text-primary hover:text-accent transition-colors duration-300 hover:underline"
               >
                 {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
               </button>
             </div>
 
             {/* Helper Text */}
-            <p className="text-sm text-center text-muted-foreground mt-2">
-              Admin: admin@vnrvjiet.in (password: sai@123)<br />
-              Candidate: 2x070a0xxx@vnrvjiet.in
-            </p>
+            <div className="pt-4 border-t border-primary/20">
+              <p className="text-xs text-center text-muted-foreground space-y-1">
+                <span className="block font-semibold text-primary">Admin Credentials:</span>
+                <span className="block">Email: admin@vnrvjiet.in</span>
+                <span className="block">Password: sai@123</span>
+                <span className="block mt-3 font-semibold text-accent">Candidate Format:</span>
+                <span className="block">2x070a0xxx@vnrvjiet.in</span>
+              </p>
+            </div>
           </form>
         </CardContent>
       </Card>
